@@ -1,9 +1,12 @@
 const path = require('path');
-
 const express = require('express');
 
+// Create a new express server instance.
 const app = express();
+const tracks = require('./api/routes/tracks');
+
 app.set('view engine', 'ejs');
+app.use('/musicplayer', tracks);
 
 app.get('/', (req, res) => {
   res.render('pages/index', {

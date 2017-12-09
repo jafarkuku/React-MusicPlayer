@@ -1,0 +1,72 @@
+@import './mixins/_functions.scss';
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+$white:                 #fff;
+$black:                 #000;
+
+$gray-darker:           lighten($black, 27%) !default; // #454545
+$gray-dark:             lighten($black, 78%) !default; // #c7c7c7
+$gray:                  lighten($black, 86%) !default; // #dbdbdb
+$gray-light:            lighten($black, 94%) !default; // #f0f0f0
+$gray-lighter:          lighten($black, 97%) !default; // #f7f7f7
+
+$dark-blue-base:        #30414f;
+$dark-blue-dark:        darken($dark-blue-base, 10%) !default;
+$dark-blue-light:       lighten($dark-blue-base, 60%) !default;
+
+$brand-primary:         #ea2914 !default;
+$brand-secondary:       #4296cd !default;
+$brand-success:         #1fa229 !default;
+$brand-info:            #31708f !default;
+$brand-warning:         #f0c400 !default;
+$brand-danger:          #ea2914 !default;
+
+//Extra Colors
+$alabaster:    #f9f9f9 !default;
+$wild-sand:    #f5f5f5 !default;
+$alto:         #dddddd !default;
+$silver:       #cccccc !default;
+$mercury:      #e5e5e5 !default;
+$gray888:      #888888 !default;
+$mine-shaft:   #333333 !default;
+$dust-gray:    #999999 !default;
+$maroon-flash: #c7254e !default;
+$soft-peach:   #f9f2f4 !default;
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:               $gray-light !default;
+//** Global text color on `<body>`.
+$text-color:            $gray-darker !default;
+
+//** Global textual link color.
+$link-color:            $brand-primary !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%) !default;
+//** Link hover decoration.
+$link-hover-decoration: initial !default;
+
+
+//Fonts
+$font-family-sans-serif:  'Open Sans', 'Helvetica', 'Arial', sans-serif !default;
+$font-family-serif:       georgia, 'Times New Roman', times, serif !default;
+
+$font-family-base:       $font-family-sans-serif !default;
+
+$font-size-base:          14px !default;
+
+$font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
+$font-size-mobile:        floor(($font-size-base * 1.2)); // 16px;
+
+$font-size-h1:            convertPxToRem(floor(($font-size-base * 2.6)), $font-size-base) !default;  // ~36px
+$font-size-h2:            convertPxToRem(floor(($font-size-base * 2.15)), $font-size-base) !default; // ~30px
+$font-size-h3:            convertPxToRem(ceil(($font-size-base * 1.7)), $font-size-base) !default;   // ~24px
+$font-size-h4:            convertPxToRem(ceil(($font-size-base * 1.25)), $font-size-base) !default;  // ~18px
+$font-size-h5:            convertPxToRem(ceil(($font-size-base * 1.1)), $font-size-base) !default;   // ~16px
+$font-size-h6:            convertPxToRem(ceil(($font-size-base * 0.85)), $font-size-base) !default;  // ~12px

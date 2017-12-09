@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import Default from './components/Default';
+import App from './components/rootContainers/App';
 
 /* global document */
 render(
-  <Default />,
+  <App />,
   document.getElementById('root'),
 );

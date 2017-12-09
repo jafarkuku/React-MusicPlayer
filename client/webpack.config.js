@@ -3,6 +3,7 @@ const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const paths = {
   dist: path.resolve(__dirname, 'public'),
@@ -47,6 +48,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   plugins: [
+    new LiveReloadPlugin(),
     new ExtractTextPlugin({
       filename: 'style.css',
       allChunks: true,
