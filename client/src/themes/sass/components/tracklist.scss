@@ -1,0 +1,103 @@
+@import './default.scss';
+
+.container{
+  width: 27vw;
+  background-color: rgba(0,117,201,0.85);
+  overflow: hidden;
+  color: white;
+  position: absolute;
+  right: 4vw;
+  bottom: 20vh;
+}
+
+.title{
+  padding: 10px 10px;
+}
+
+.itemContainer{
+  width: 100%;
+}
+
+.artist_song{
+  width: 80%;
+  padding: 10px 0px;
+  margin-left: 10px;
+
+  h3{
+    font-size: 16px;
+  }
+
+  p{
+    font-size: 12px;
+  }
+}
+
+
+
+
+.duration{
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p{
+    font-size: 12px;
+  }
+}
+
+.itemClass{
+  list-style-type: none;
+  background-color: #363636;
+  border-bottom: solid 1px white;
+  display: flex;
+  flex-direction: row;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center left 10px;
+
+  &:hover {
+    background-color: black;
+  }
+
+  &:focus {
+    background-color: black;
+  }
+
+  &:focus .duration{
+    background-color: #0075C9;
+  }
+
+  &:hover .buttonClass{
+      display: block;
+      background-image: url('../icons/play.svg');
+  }
+
+  &:hover .duration{
+    background-color: #0075C9;
+  }
+}
+
+.active{
+  background-color: black;
+  background-image: url('../icons/speaker.svg');
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center left 10px;
+  padding-left: 40px;
+}
+
+.buttonClass{
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center center;
+
+  &:hover{
+      background-image: url('../icons/speaker.svg');
+  }
+}
+.activeClass{
+  background-image: url('../icons/speaker.svg');
+}

@@ -1,36 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//  import classNames from 'classnames';
+import classNames from 'classnames';
 
 const Button = (props) => {
   const {
-    buttonClassName,
+    buttonClass,
     onClick,
-    children,
   } = props;
 
   return (
     <div
       aria-hidden
       onClick={onClick}
-      className={buttonClassName.activeClass}
-    >
-      {children}
-    </div>
+      className={classNames([buttonClass])}
+    />
   );
 };
 
 Button.propTypes = {
-  buttonClassName: PropTypes.shape({
-    activeClass: PropTypes.string,
-    hasChildrenClass: PropTypes.string,
-  }),
-  onClick: PropTypes.func,
-  children: PropTypes.oneOfType([
+  buttonClass: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.object,
     PropTypes.array,
+    PropTypes.any,
   ]),
+  onClick: PropTypes.func,
 };
 
 Button.defaultProps = Object.assign({}, Button.propTypes);

@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//  import classNames from 'classnames';
+// import classNames from 'classnames';
+
+// import Icon from '../../presentational/Icon';
+import trackInfo from '../../../themes/sass/components/trackInformation.scss';
 
 const TrackInformation = (props) => {
   const {
@@ -9,7 +12,6 @@ const TrackInformation = (props) => {
 
   TrackInformation.propTypes = {
     track: PropTypes.oneOfType([
-      PropTypes.string,
       PropTypes.object,
       PropTypes.array,
     ]),
@@ -18,12 +20,9 @@ const TrackInformation = (props) => {
   TrackInformation.defaultProps = Object.assign({}, TrackInformation.propTypes);
 
   return (
-    <div>
+    <div className={trackInfo.wrapper}>
       <h2>{track.track_title}</h2>
       <p>{track.artist_name}</p>
-      <p>{track.track_favorites}</p>
-      <p>{track.track_listens}</p>
-      <p>{track.track_comments}</p>
     </div>
   );
 };

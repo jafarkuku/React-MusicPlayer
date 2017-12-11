@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 const Audio = (props) => {
   const {
     audiofile,
-    autoPlay,
     audio,
     onTimeUpdate,
   } = props;
@@ -14,8 +13,7 @@ const Audio = (props) => {
     <div className="audio">
       <audio
         src={audiofile}
-        autoPlay={autoPlay}
-        controls
+        autoPlay
         ref={audio}
         onTimeUpdate={onTimeUpdate}
       >
@@ -27,10 +25,6 @@ const Audio = (props) => {
 
 Audio.propTypes = {
   audiofile: PropTypes.string,
-  autoPlay: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.string,
-  ]),
   audio: PropTypes.func,
   onTimeUpdate: PropTypes.func,
 };

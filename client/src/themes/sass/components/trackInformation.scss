@@ -1,0 +1,45 @@
+@import './default.scss';
+
+.wrapper{
+  background-color: rgba(0,117,201,0.85);
+  color: white;
+  padding: 10px 20px;
+  text-align: right;
+}
+
+.wrapper h2{
+  font-size: 30px;
+}
+
+.wrapper p{
+  font-size: 16px;
+}
+
+.icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.icon{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 5px 10px;
+}
+
+.listens{
+  background-image: url('../icons/listens.svg');
+}
+
+.thumbsup{
+  background-image: url('../icons/thumbs-up.svg');
+}
+
+.comments{
+  background-image: url('../icons/comments.svg');
+}
+
+.timer{
+  background-image: url('../icons/timer.svg');
+}

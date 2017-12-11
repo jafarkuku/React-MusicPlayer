@@ -1,0 +1,208 @@
+/**
+* It returns a list of converted elements from px to rem
+* @list: {list/number/string} list of elments - 1px 2px - 5 10 5 10
+* @font-base: {number/string} Default: $font-size-base - font-base from which rem is referenced
+* @separator: {string} - Separator between elements - space, comma
+* Usage: getListRem(1px 10px 5px 10px, $font-base: 14px); => 0.07143rem 0.71429rem 0.35714rem 0.71429rem;
+*/
+ul, li, p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0; }
+
+.tracklist-footerbody-448011db {
+  background: red;
+  color: #fff; }
+
+.tracklist-container-096d54fe {
+  width: 27vw;
+  background-color: rgba(0, 117, 201, 0.85);
+  overflow: hidden;
+  color: white;
+  position: absolute;
+  right: 4vw;
+  bottom: 20vh; }
+
+.tracklist-title-e2970a69 {
+  padding: 10px 10px; }
+
+.tracklist-itemContainer-5270a834 {
+  width: 100%; }
+
+.tracklist-artist_song-375c8cec {
+  width: 80%;
+  padding: 10px 0px;
+  margin-left: 10px; }
+  .tracklist-artist_song-375c8cec h3 {
+    font-size: 16px; }
+  .tracklist-artist_song-375c8cec p {
+    font-size: 12px; }
+
+.tracklist-duration-4e999f98 {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .tracklist-duration-4e999f98 p {
+    font-size: 12px; }
+
+.tracklist-itemClass-d4cec911 {
+  list-style-type: none;
+  background-color: #363636;
+  border-bottom: solid 1px white;
+  display: flex;
+  flex-direction: row;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center left 10px; }
+  .tracklist-itemClass-d4cec911:hover {
+    background-color: black; }
+  .tracklist-itemClass-d4cec911:focus {
+    background-color: black; }
+  .tracklist-itemClass-d4cec911:focus .tracklist-duration-4e999f98 {
+    background-color: #0075C9; }
+  .tracklist-itemClass-d4cec911:hover .tracklist-buttonClass-d88a024b {
+    display: block;
+    background-image: url(images/play.c46873d7.svg); }
+  .tracklist-itemClass-d4cec911:hover .tracklist-duration-4e999f98 {
+    background-color: #0075C9; }
+
+.tracklist-active-aebf538d {
+  background-color: black;
+  background-image: url(images/speaker.843f5372.svg);
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center left 10px;
+  padding-left: 40px; }
+
+.tracklist-buttonClass-d88a024b {
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center center; }
+  .tracklist-buttonClass-d88a024b:hover {
+    background-image: url(images/speaker.843f5372.svg); }
+
+.tracklist-activeClass-a607b123 {
+  background-image: url(images/speaker.843f5372.svg); }
+/**
+* It returns a list of converted elements from px to rem
+* @list: {list/number/string} list of elments - 1px 2px - 5 10 5 10
+* @font-base: {number/string} Default: $font-size-base - font-base from which rem is referenced
+* @separator: {string} - Separator between elements - space, comma
+* Usage: getListRem(1px 10px 5px 10px, $font-base: 14px); => 0.07143rem 0.71429rem 0.35714rem 0.71429rem;
+*/
+ul, li, p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0; }
+
+.trackInformation-footerbody-93c41ada {
+  background: red;
+  color: #fff; }
+
+.trackInformation-wrapper-755e77e7 {
+  background-color: rgba(0, 117, 201, 0.85);
+  color: white;
+  padding: 10px 20px;
+  text-align: right; }
+
+.trackInformation-wrapper-755e77e7 h2 {
+  font-size: 30px; }
+
+.trackInformation-wrapper-755e77e7 p {
+  font-size: 16px; }
+
+.trackInformation-icons-73fa3dcf {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; }
+
+.trackInformation-icon-f8a08dd1 {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 5px 10px; }
+
+.trackInformation-listens-367045fa {
+  background-image: url(images/listens.fd29a91f.svg); }
+
+.trackInformation-thumbsup-e0f71d0e {
+  background-image: url(images/thumbs-up.f49227a1.svg); }
+
+.trackInformation-comments-1db26695 {
+  background-image: url(images/comments.41ec6095.svg); }
+
+.trackInformation-timer-3fb1e6b9 {
+  background-image: url(images/timer.40a9c5ea.svg); }
+.progressbar-progressbar-630fda66 {
+  width: 80%;
+  align-items: center;
+  justify-content: center; }
+
+progress {
+  width: 80%;
+  display: block;
+  margin-left: 20px; }
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #1A1A1A;
+  border-radius: 10px;
+  color: #0075C9;
+  height: 10px; }
+
+progress[value]::-webkit-progress-bar {
+  background-color: #1A1A1A;
+  border: none;
+  border-radius: 10px;
+  color: blue; }
+
+progress::-webkit-progress-value {
+  background-color: #0075C9;
+  border-radius: 10px; }
+
+p {
+  font-size: 1.6rem; }
+.player-player-fcf4f012 {
+  background-color: #363636;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 4px 10px;
+  margin-bottom: 2px; }
+.player-info-player_info_wrapper-98fe625c {
+  width: 25vw;
+  position: absolute;
+  bottom: 20%; }
+/**
+* It returns a list of converted elements from px to rem
+* @list: {list/number/string} list of elments - 1px 2px - 5 10 5 10
+* @font-base: {number/string} Default: $font-size-base - font-base from which rem is referenced
+* @separator: {string} - Separator between elements - space, comma
+* Usage: getListRem(1px 10px 5px 10px, $font-base: 14px); => 0.07143rem 0.71429rem 0.35714rem 0.71429rem;
+*/
+.button-buttonClass-e1a94d07 {
+  width: 40px;
+  height: 40px;
+  background-image: url(images/play.c46873d7.svg);
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center; }
+
+.button-activeClass-b382d9aa {
+  background-image: url(images/pause.935cbed8.svg);
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center; }
+
+.button-inactiveClass-debccabc {
+  background-image: url(images/play.c46873d7.svg);
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: center; }
+.menucontainer-wrapper-1143c395 {
+  height: 100vh;
+  background-color: black; }

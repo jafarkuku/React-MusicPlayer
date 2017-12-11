@@ -5,6 +5,11 @@ import TrackList from '../../presentational/TrackList';
 import TrackInformation from '../../presentational/TrackInformation';
 import Player from '../../presentational/Player';
 
+import tracklist from '../../../themes/sass/components/tracklist.scss';
+import playerInfo from '../../../themes/sass/components/player-info.scss';
+import button from '../../../themes/sass/components/button.scss';
+import menucontainer from '../../../themes/sass/components/menucontainer.scss';
+
 class MusicContainer extends Component {
   constructor(props) {
     super(props);
@@ -13,8 +18,8 @@ class MusicContainer extends Component {
         tracks: [],
         selectedTrack: {},
         state: 'playing',
-        autoPlay: true,
-        duration: '0',
+        duration: 0,
+        progress: '0',
       },
     };
   }
@@ -22,30 +27,52 @@ class MusicContainer extends Component {
   componentDidMount() {
     axios.get('http://localhost:3200/musicplayer/api/tracks')
       .then((res) => {
-        const newData = Object.assign({}, this.state.player, {
+        const player = Object.assign({}, this.state.player, {
           tracks: res.data,
-          selectedTrack: res.data[this.getRandomNumber(1, this.state.player.tracks.length)],
+          selectedTrack: res.data[0],
         });
-        this.setState({
-          player: newData,
-        });
+        this.setState({ player });
       });
   }
 
-  getRandomNumber = (min, max) =>
-    Math.floor(Math.random() * ((max - min) + 1)) + min;
-
-  stopPropagation = (e) => {
-    e.stopPropagation();
+  getProgressValue = () => {
+    this.progress.value = this.audio.currentTime / this.audio.duration;
+    this.progress.addEventListener('click', this.handleOnSeek);
+    return this.progress.value || '20';
   }
 
+
+  handleOnPlay = () => {
+    if (this.state.player.state === 'playing') {
+      const player = Object.assign({}, this.state.player, { state: 'paused' });
+      this.setState({ player });
+      this.audio.pause();
+    } else if (this.state.player.state === 'paused') {
+      const player = Object.assign({}, this.state.player, { state: 'playing' });
+      this.setState({ player });
+      this.audio.play();
+    }
+  }
+
+
+  handleOnSeek = (e) => {
+    const percent = e.pageX / this.progress.offsetWidth;
+    this.audio.currentTime = percent * this.audio.duration;
+    this.progress.value = percent / 100;
+    return this.progress.value || '20';
+  }
+
+
   handleOnSelect = (e) => {
+    if (this.state.player.state === 'paused') {
+      this.state.player.state = 'playing';
+    }
     const selectedTrack = this.state.player.tracks.filter(track =>
       track.track_id === e.currentTarget.dataset.id);
-    const newSelectedTrack = Object.assign({}, this.state.player, {
+    const player = Object.assign({}, this.state.player, {
       selectedTrack: selectedTrack[0],
     });
-    this.setState({ player: newSelectedTrack });
+    this.setState({ player });
   }
 
   handleTimeUpdate = () => {
@@ -54,68 +81,68 @@ class MusicContainer extends Component {
       const mins = Math.floor((time % 3600) / 60);
       const secs = Math.round(time % 60);
 
-      let ret = '';
+      let value = '';
 
       if (hrs > 0) {
-        ret += ` ${hrs}:${(mins < 10 ? 0 : '')}`;
+        value += `${hrs}:${(mins < 10 ? 0 : '')}`;
       }
-      ret += `${mins}:${(secs < 10 ? '0' : '')}`;
-      ret += `${secs}`;
-      return ret;
+      value += `${mins}:${(secs < 10 ? '0' : '')}`;
+      value += `${secs}`;
+      return value;
     }
-    const duration = Object.assign({}, this.state.player, {
-      duration: timeFormat(this.audio.currentTime),
+    const { duration, currentTime } = this.audio;
+    const player = Object.assign({}, this.state.player, {
+      duration: timeFormat((duration - currentTime)),
+      progress: (this.audio.currentTime / this.audio.duration).toString(),
     });
-    this.setState({ player: duration });
-  }
-
-  handleOnPlay = () => {
-    console.log(this.audio.timeupdate);
-    const player = Object.assign({}, this.state.player);
-    player.duration = Math.floor(this.audio.currentTime);
-    if (player.state === 'playing') {
-      player.state = 'paused';
-      this.audio.pause();
-      this.setState({ player });
-    } else if (player.state === 'paused') {
-      player.state = 'playing';
-      this.audio.play();
-      this.setState({ player });
-    }
-
-    console.log(this.state.player.state);
-  }
-
-  handleOnNext = () => {
-    console.log('You clicked Next!');
-  }
-
-  handleOnPrevious = () => {
-    console.log('You clicked Previous!');
+    this.setState({ player });
   }
 
   render() {
+    const style = {
+      backgroundImage: `url(${this.state.player.selectedTrack.track_image_file})`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+    };
+
     if (this.state.player.tracks.length === 0) {
       return (
-        <div><h1>Loading Player...</h1></div>
+        <div>
+          <h1>Loading Player...</h1>
+        </div>
       );
     }
+
     return (
-      <div>
-        <Player
-          onPlay={this.handleOnPlay}
-          onNext={this.handleOnNext}
-          onPrevious={this.handleOnPrevious}
-          audioFile={this.state.player.selectedTrack.track_file}
-          autoPlay={this.state.player.autoPlay}
-          audio={(audio) => { this.audio = audio; }}
-          duration={this.state.player.duration}
-          onTimeUpdate={this.handleTimeUpdate}
-        />
-        <TrackInformation track={this.state.player.selectedTrack} />
+      <div style={style} className={menucontainer.wrapper}>
+        <div className={playerInfo.player_info_wrapper}>
+          <Player
+            onPlay={this.handleOnPlay}
+            audioFile={this.state.player.selectedTrack.track_file}
+            audio={(audio) => { this.audio = audio; }}
+            progress={(progress) => { this.progress = progress; }}
+            progressValue={this.state.player.progress}
+            duration={this.state.player.duration}
+            onTimeUpdate={this.handleTimeUpdate}
+            onClick={this.getProgressValue}
+            buttonClass={[
+              button.buttonClass,
+              (this.state.player.state === 'playing') ?
+                button.activeClass :
+                null,
+            ]}
+          />
+          <TrackInformation track={this.state.player.selectedTrack} />
+        </div>
         <TrackList
+          onPlay={this.handleOnPlay}
           tracks={this.state.player.tracks}
+          trackId={this.state.player.selectedTrack.track_id}
           onTrackSelect={this.handleOnSelect}
+          itemClass={[
+            tracklist.itemClass,
+          ]}
         />
       </div>
     );

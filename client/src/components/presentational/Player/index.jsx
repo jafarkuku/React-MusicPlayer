@@ -3,69 +3,59 @@ import PropTypes from 'prop-types';
 
 import Button from '../Button';
 import Audio from '../Audio';
-import Label from '../../presentational/Label';
+import ProgressBar from '../ProgressBar';
+
+import player from '../../../themes/sass/components/player.scss';
 
 const Player = (props) => {
   const {
-    buttonClassName,
+    buttonClass,
     onPlay,
-    onPrevious,
-    onNext,
+    onClick,
+    progressValue,
     audioFile,
     audio,
-    autoPlay,
+    progress,
     duration,
     onTimeUpdate,
   } = props;
 
   Player.propTypes = {
-    buttonClassName: PropTypes.shape({
-      activeClass: PropTypes.string,
-      hasChildrenClass: PropTypes.string,
-    }),
+    buttonClass: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.any,
+    ]),
     onPlay: PropTypes.func,
-    onPrevious: PropTypes.func,
-    onNext: PropTypes.func,
     audioFile: PropTypes.string,
     audio: PropTypes.func,
-    autoPlay: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.string,
-    ]),
+    progress: PropTypes.func,
+    progressValue: PropTypes.string,
     onTimeUpdate: PropTypes.func,
+    onClick: PropTypes.func,
     duration: PropTypes.string,
   };
 
   Player.defaultProps = Object.assign({}, Player.propTypes);
 
   return (
-    <div>
-      Hello i am the button
+    <div className={player.player}>
       <Button
         onClick={onPlay}
-        buttonClassName={buttonClassName}
-      >
-        <p>I am Play</p>
-      </Button>
-      <Button
-        onClick={onPrevious}
-        buttonClassName={buttonClassName}
-      >
-        <p>I am Previous</p>
-      </Button>
-      <Button
-        onClick={onNext}
-        buttonClassName={buttonClassName}
-      >
-        <p>I am Next</p>
-      </Button>
+        buttonClass={buttonClass}
+      />
       <Audio
         audiofile={audioFile}
-        autoPlay={autoPlay}
         audio={audio}
         onTimeUpdate={onTimeUpdate}
       />
-      <Label><h3>{duration}</h3></Label>
+      <ProgressBar
+        className={player.progressbar}
+        progress={progress}
+        onClick={onClick}
+        value={progressValue}
+      />
+      <h3>{duration || 0}</h3>
     </div>
   );
 };

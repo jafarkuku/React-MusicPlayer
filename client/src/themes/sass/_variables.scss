@@ -44,14 +44,6 @@ $body-bg:               $gray-light !default;
 //** Global text color on `<body>`.
 $text-color:            $gray-darker !default;
 
-//** Global textual link color.
-$link-color:            $brand-primary !default;
-//** Link hover color set via `darken()` function.
-$link-hover-color:      darken($link-color, 15%) !default;
-//** Link hover decoration.
-$link-hover-decoration: initial !default;
-
-
 //Fonts
 $font-family-sans-serif:  'Open Sans', 'Helvetica', 'Arial', sans-serif !default;
 $font-family-serif:       georgia, 'Times New Roman', times, serif !default;
@@ -70,3 +62,9 @@ $font-size-h3:            convertPxToRem(ceil(($font-size-base * 1.7)), $font-si
 $font-size-h4:            convertPxToRem(ceil(($font-size-base * 1.25)), $font-size-base) !default;  // ~18px
 $font-size-h5:            convertPxToRem(ceil(($font-size-base * 1.1)), $font-size-base) !default;   // ~16px
 $font-size-h6:            convertPxToRem(ceil(($font-size-base * 0.85)), $font-size-base) !default;  // ~12px
+
+//Icons
+$icon-default-margin:   5px;
+$icon-size-small:       10px;
+$icon-size-default:     15px;
+$icon-size-large:       25px;

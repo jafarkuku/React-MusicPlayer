@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -36,11 +35,18 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css-loader?modules!sass-loader'),
+        loader: ExtractTextPlugin.extract('css-loader?modules&localIdentName=[name]-[local]-[hash:8]!sass-loader'),
       },
       {
         test: /\.css$/,
         loader: 'style!css!postcss',
+      },
+      {
+        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+        loader: 'file-loader',
+        options: {
+          name: 'images/[name].[hash:8].[ext]',
+        },
       },
     ],
   },
