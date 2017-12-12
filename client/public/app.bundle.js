@@ -19127,6 +19127,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(1);
@@ -19219,27 +19221,28 @@ var MusicContainer = function (_Component) {
       _this.setState({ player: player });
     };
 
-    _this.handleTimeUpdate = function () {
-      function timeFormat(time) {
-        var hrs = Math.floor(time / 3600);
-        var mins = Math.floor(time % 3600 / 60);
-        var secs = Math.round(time % 60);
+    _this.timeFormat = function (time) {
+      var hrs = Math.floor(time / 3600) || 0;
+      var mins = Math.floor(time % 3600 / 60) || 0;
+      var secs = Math.round(time % 60) || 0;
 
-        var value = '';
+      var value = '';
 
-        if (hrs > 0) {
-          value += hrs + ':' + (mins < 10 ? 0 : '');
-        }
-        value += mins + ':' + (secs < 10 ? '0' : '');
-        value += '' + secs;
-        return value;
+      if (hrs > 0) {
+        value += hrs + ':' + (mins < 10 ? 0 : '');
       }
+      value += mins + ':' + (secs < 10 ? '0' : '');
+      value += '' + secs;
+      return value;
+    };
+
+    _this.handleTimeUpdate = function () {
       var _this$audio = _this.audio,
           duration = _this$audio.duration,
           currentTime = _this$audio.currentTime;
 
       var player = Object.assign({}, _this.state.player, {
-        duration: timeFormat(duration - currentTime),
+        duration: duration - currentTime,
         progress: (_this.audio.currentTime / _this.audio.duration).toString()
       });
       _this.setState({ player: player });
@@ -19262,6 +19265,7 @@ var MusicContainer = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      console.log(_typeof(this.state.player.duration));
       _axios2.default.get('http://localhost:3200/musicplayer/api/tracks').then(function (res) {
         var player = Object.assign({}, _this2.state.player, {
           tracks: res.data,
@@ -19310,7 +19314,7 @@ var MusicContainer = function (_Component) {
               _this3.progress = _progress;
             },
             progressValue: this.state.player.progress,
-            duration: this.state.player.duration,
+            duration: this.timeFormat(this.state.player.duration),
             onTimeUpdate: this.handleTimeUpdate,
             onClick: this.getProgressValue,
             buttonClass: [_button2.default.buttonClass, this.state.player.state === 'playing' ? _button2.default.activeClass : null]

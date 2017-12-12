@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "NODE_ENV=development nodemon index.js --ignore client/public/",
-    "start:live": "NODE_ENV=development nodemon index.js",
+    "start": "NODE_ENV=development nodemon index.js --ignore client/public/",
     "build": "webpack --config ./client/webpack.config.js",
     "lint": "eslint ./client/src --fix && stylelint ./client/src/**/*.scss"
   },

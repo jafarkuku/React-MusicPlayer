@@ -75,24 +75,25 @@ class MusicContainer extends Component {
     this.setState({ player });
   }
 
-  handleTimeUpdate = () => {
-    function timeFormat(time) {
-      const hrs = Math.floor(time / 3600);
-      const mins = Math.floor((time % 3600) / 60);
-      const secs = Math.round(time % 60);
+  timeFormat = (time) => {
+    const hrs = Math.floor(time / 3600) || 0;
+    const mins = Math.floor((time % 3600) / 60) || 0;
+    const secs = Math.round(time % 60) || 0;
 
-      let value = '';
+    let value = '';
 
-      if (hrs > 0) {
-        value += `${hrs}:${(mins < 10 ? 0 : '')}`;
-      }
-      value += `${mins}:${(secs < 10 ? '0' : '')}`;
-      value += `${secs}`;
-      return value;
+    if (hrs > 0) {
+      value += `${hrs}:${(mins < 10 ? 0 : '')}`;
     }
+    value += `${mins}:${(secs < 10 ? '0' : '')}`;
+    value += `${secs}`;
+    return value;
+  }
+
+  handleTimeUpdate = () => {
     const { duration, currentTime } = this.audio;
     const player = Object.assign({}, this.state.player, {
-      duration: timeFormat((duration - currentTime)),
+      duration: duration - currentTime,
       progress: (this.audio.currentTime / this.audio.duration).toString(),
     });
     this.setState({ player });
@@ -123,7 +124,7 @@ class MusicContainer extends Component {
             audio={(audio) => { this.audio = audio; }}
             progress={(progress) => { this.progress = progress; }}
             progressValue={this.state.player.progress}
-            duration={this.state.player.duration}
+            duration={this.timeFormat(this.state.player.duration)}
             onTimeUpdate={this.handleTimeUpdate}
             onClick={this.getProgressValue}
             buttonClass={[
